@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Studio - Professional Video Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #8B1538;
+            --accent: #ffffff;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(180deg, #1a1a1a 0%, rgba(26,26,26,0.98) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #8B1538;
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: #8B1538;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            background: #8B1538;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: #a01d46;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 21, 56, 0.3);
+        }
+
+        .hero {
+            margin-top: 80px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 21, 56, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: #8B1538;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #ccc;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 16px 50px;
+            background: #8B1538;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: #a01d46;
+            box-shadow: 0 15px 40px rgba(139, 21, 56, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            padding: 16px 50px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #8B1538;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-secondary:hover {
+            background: #8B1538;
+            box-shadow: 0 15px 40px rgba(139, 21, 56, 0.4);
+        }
+
+        .about {
+            padding: 120px 60px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-content h2 span {
+            color: #8B1538;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat {
+            padding: 20px;
+            background: #f8f8f8;
+            border-left: 4px solid #8B1538;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #8B1538;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .portfolio {
+            padding: 120px 60px;
+            background: #f8f8f8;
+        }
+
+        .portfolio h2 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .portfolio-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #1a1a1a 0%, #8B1538 100%);
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #fff;
+            font-weight: 600;
+            font-size: 22px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-category {
+            color: #8B1538;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .services {
+            padding: 120px 60px;
+            background: #fff;
+        }
+
+        .services h2 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .services-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #8B1538;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            color: #8B1538;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .pricing {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .pricing h2 {
+            font-size: 48px;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .pricing-subtitle {
+            text-align: center;
+            color: #ccc;
+            font-size: 18px;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #8B1538;
+            padding: 60px 40px;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            background: #8B1538;
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.4);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.3);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .pricing-price {
+            font-size: 72px;
+            font-weight: 900;
+            color: #8B1538;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card.featured .pricing-price {
+            color: #fff;
+        }
+
+        .pricing-description {
+            color: #aaa;
+            font-size: 16px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .pricing-card.featured .pricing-description {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 15px 0;
+            color: #aaa;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(139, 21, 56, 0.2);
+            font-weight: 500;
+        }
+
+        .pricing-features li strong {
+            color: #fff;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 16px 30px;
+            background: #8B1538;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: #fff;
+            color: #8B1538;
+        }
+
+        .pricing-cta:hover {
+            box-shadow: 0 10px 30px rgba(139, 21, 56, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .contact {
+            padding: 120px 60px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .contact-content h2 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .contact-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            color: #8B1538;
+            font-weight: 700;
+            font-size: 18px;
+            min-width: 30px;
+        }
+
+        .contact-text {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B1538;
+            box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        footer {
+            padding: 60px;
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            border-top: 1px solid #8B1538;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: #8B1538;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1200px) {
+            .portfolio-grid,
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about,
+            .contact {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            header {
+                padding: 0 30px;
+            }
+
+            nav {
+                gap: 30px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 70px;
+                height: auto;
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about,
+            .contact,
+            .services,
+            .portfolio,
+            .pricing {
+                padding: 60px 20px;
+            }
+
+            .portfolio-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about h2,
+            .services h2,
+            .contact h2,
+            .portfolio h2,
+            .pricing h2 {
+                font-size: 32px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">VIDEO<span>STUDIO</span></div>
+        <nav>
+            <a href="#about">Про мене</a>
+            <a href="#portfolio">Портфоліо</a>
+            <a href="#services">Послуги</a>
+            <a href="#pricing">Ціни</a>
+            <a href="#contact">Контакт</a>
+        </nav>
+        <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView()">Замовити</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI Video Creation<span> Для Вашого Бізнесу</span></h1>
+            <p>Професійні AI-генеровані відео, motion design та креативний монтаж для нерухомості, інтернет-магазинів, меблевих компаній та будь-яких великих бізнесів</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView()">Переглянути Роботи</button>
+                <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView()">Запитати Ціну</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>Про <span>Мене</span></h2>
+            <p>Я спеціалізуюсь на створенні інноваційних відео-контенту для премиальних брендів та великих бізнесів. З використанням найновіших AI-технологій та професійного монтажу, я перетворюю ваші ідеї на вражаючі відеопроекти.</p>
+            <p>Моя робота охоплює всі ніші: від люксової нерухомості до інсташопів, від меблевих колекцій до комерційних проектів. Кожен проект — це унікальна розповідь про ваш бренд.</p>
+            
+            <div class="about-stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Завершених Проектів</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Задоволених Клієнтів</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Років в Індустрії</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Швидкість Відповіді</div>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="width: 100%; aspect-ratio: 9/16; background: linear-gradient(135deg, #1a1a1a 0%, #8B1538 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 48px; font-weight: 700;">
+                🎬
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2>Мій <span style="color: #8B1538;">Портфоліо</span></h2>
+        <p class="portfolio-subtitle">Переглядайте мої останні роботи — AI-генеровані відео, motion design та креативний монтаж</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item" style="background: #000;">
+                <video width="100%" height="100%" style="width:100%; height:100%; object-fit: cover;" autoplay muted loop controls>
+                    <source src="portfolio_1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">AI Video</div>
+                    <div class="portfolio-title">Cinematic AI Scene</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" style="background: #000;">
+                <video width="100%" height="100%" style="width:100%; height:100%; object-fit: cover;" autoplay muted loop controls>
+                    <source src="portfolio_2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Real Estate</div>
+                    <div class="portfolio-title">Building Showcase</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" style="background: #000;">
+                <video width="100%" height="100%" style="width:100%; height:100%; object-fit: cover;" autoplay muted loop controls>
+                    <source src="portfolio_3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Commercial</div>
+                    <div class="portfolio-title">Product Promo</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                💼 CORPORATE
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Business</div>
+                    <div class="portfolio-title">Corporate Video</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                ✨ MOTION DESIGN
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Animation</div>
+                    <div class="portfolio-title">Motion Design</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                🎨 VIDEO EDITING
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Editing</div>
+                    <div class="portfolio-title">Creative Edit</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Мої <span style="color: #8B1538;">Послуги</span></h2>
+        <p class="services-subtitle">Повний спектр послуг для створення професійного відео-контенту</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <h3>AI Video Generation</h3>
+                <p>Повністю AI-генеровані відео від нуля. Я створюю сценарій, концепцію та генеруюю відео за допомогою найновіших AI-моделей (Veo 3, Runway, Pika).</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Motion Design</h3>
+                <p>Динамічний motion design для інтро, outro, перехідні ефекти та анімовані елементи. Adobe After Effects, Figma Motion та професійна обробка.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Video Editing</h3>
+                <p>Професійний монтаж та постпродакшн. Колор-грейдинг, звукова обробка, вставлення текстових ефектів та оптимізація для різних платформ.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <h2>ЦІНОВА <span style="color: #8B1538;">ПОЛІТИКА</span></h2>
+        <p class="pricing-subtitle">Конкурентні ціни на основі аналізу топ-продавців Fiverr</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card featured">
+                <div class="pricing-title">AI VIDEO</div>
+                <div class="pricing-price">$220</div>
+                <div class="pricing-description">Повна AI генерація</div>
+                <ul class="pricing-features">
+                    <li>✓ <strong>1 AI-генероване відео</strong></li>
+                    <li>✓ 30-60 секунд контенту</li>
+                    <li>✓ Професійна генерація (Veo 3, Runway)</li>
+                    <li>✓ Колор-грейдинг та редакція</li>
+                    <li>✓ Музика та звукова обробка</li>
+                    <li>✓ Невограничені редакції</li>
+                    <li>✓ HD якість</li>
+                    <li>✓ 24 години доставки</li>
+                </ul>
+                <button class="pricing-cta">Замовити на Fiverr</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-title">MOTION DESIGN</div>
+                <div class="pricing-price">$60</div>
+                <div class="pricing-description">Анімація та графіка</div>
+                <ul class="pricing-features">
+                    <li>✓ <strong>Motion Design відео</strong></li>
+                    <li>✓ 10-30 секунд анімації</li>
+                    <li>✓ Adobe After Effects</li>
+                    <li>✓ Кастомні анімації</li>
+                    <li>✓ Інтро/Outro/Переходи</li>
+                    <li>✓ 2 редакції включено</li>
+                    <li>✓ 1080p якість</li>
+                    <li>✓ 3-5 днів доставки</li>
+                </ul>
+                <button class="pricing-cta">Замовити на Fiverr</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Розпочнемо <span style="color: #8B1538;">ВАШУ ІСТОРІЮ</span></h2>
+            <p>Готові трансформувати ваш бізнес за допомогою потужного відео-контенту? Заповніть форму і я зв'яжусь з вами протягом 24 годин.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">hello@videostudio.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-text">Telegram: @videostudio</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div class="contact-text">Відповідь: максимум 24 години</div>
+                </div>
+            </div>
+        </div>
+
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label>Ваше ім'я</label>
+                <input type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" required>
+            </div>
+            <div class="form-group">
+                <label>Тип проекту</label>
+                <input type="text" placeholder="Нерухомість, Інсташоп, Меблі і т.д.">
+            </div>
+            <div class="form-group">
+                <label>Ваше повідомлення</label>
+                <textarea required placeholder="Опишіть вашу ідею..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Надіслати</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">Fiverr</a>
+            <a href="#">YouTube</a>
+        </div>
+        <p>&copy; 2024 Video Studio. All Rights Reserved. Premium Design.</p>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Дякую за вашу заявку! Я зв\'яжусь з вами найскоріше.');
+            event.target.reset();
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 80;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
